@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chore List</title>
+    <title>Chore Chart</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="container">
-    <div id="new-category" class="jumbotron">
-        <h2>New Category</h2>
-        <input type="text" id="new-category-name" class="form-control"> <br>
-        <button id="create-new-category" class="btn btn-primary form-control">Create</button>
+
+    <div id="new-task" class="jumbotron">
+        <h2>Chore List</h2>
+        <label for="new-chore">New Chore:</label>
+        <input type="text" id="new-chore" class="form-control" placeholder="Enter a new chore!"><br>
+        <label for="task-description">Description:</label>
+        <input type="text" id="task-description" class="form-control" placeholder="Enter a description of this chore!">
+        <button id="addChore" class="btn btn-primary form-control">Add</button>
     </div>
+
+    <ul id="chores">
+        <!-- This is where your chores will be displayed -->
+    </ul>
     
+<div id="app">
 
-    <div id="app">
+</div>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="index.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
-    </div>
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="index.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>

@@ -65,6 +65,28 @@ const deleteChore = async (id, event) => {
     getChores();
 };
 
+const editChore = async (id, updatedChore) => {
+    try {
+        const response = await fetch(
+            `https://65a83fbb94c2c5762da885a9.mockapi.io/Chore/${id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedChore),
+            }
+        );
+
+        const data = await response.json();
+        console.log(data);
+        getChores();
+    } catch (error) {
+        console.error('Error updating chore:', error);
+        throw error;
+    }
+};
+
 const displayChores = (chores) => {
     choresOutput.innerHTML = '';
     chores.forEach(chore => {
@@ -77,9 +99,21 @@ const displayChores = (chores) => {
         deleteButton.textContent = 'Delete';
         deleteButton.addEventListener('click', (event) => deleteChore(chore.id, event));
 
+        const editButton = document.createElement('button');
+        editButton.classList.add('btn', 'btn-primary', 'ml-2');
+        editButton.textContent = 'Edit';
+        editButton.addEventListener('click', () => editChore(chore.id, promptForUpdatedChore(chore)));
+
         listItem.appendChild(deleteButton);
+        listItem.appendChild(editButton);
         choresOutput.appendChild(listItem);
     });
+};
+
+const promptForUpdatedChore = (chore) => {
+    const updatedChore = prompt("Enter updated chore:", chore.chore);
+    const updatedDesc = prompt("Enter updated description:", chore.desc);
+    return { chore: updatedChore, desc: updatedDesc };
 };
 
 // Initial fetch and display
